@@ -1,0 +1,31 @@
+:root { --gold: #ffd60a; --ink: #240046; --gap: clamp(12px, 3vw, 20px) }
+* { box-sizing: border-box }
+body { margin: 0; min-height: 100dvh; font-family: system-ui, sans-serif; font-size: 16px; line-height: 1.5; color: #fff;
+  background: radial-gradient(circle at top, #7b2cbf, var(--ink) 70%) fixed; display: grid; place-items: center; padding: var(--gap) }
+.card { width: min(520px, 100%); background: #ffffff14; border: 1px solid #ffffff30; border-radius: 20px; padding: clamp(16px, 4vw, 28px); backdrop-filter: blur(8px); display: grid; gap: var(--gap) }
+.center { text-align: center; display: grid; gap: 12px; justify-items: center; align-content: center }
+header { display: flex; justify-content: space-between; align-items: center; font-weight: 600 }
+.pts { display: inline-flex; align-items: center; gap: 6px; background: #00000040; padding: 4px 12px; border-radius: 999px; color: var(--gold) }
+.pts b { font-variant-numeric: tabular-nums; color: #fff }
+h1 { margin: 0; font-size: clamp(1.5rem, 6vw, 2.2rem); line-height: 1.2; text-wrap: balance } .tag { color: var(--gold); font-weight: 700; margin: 0 }
+.score { font-size: 2rem; font-weight: 700; margin: 0 }
+button { font: inherit; min-height: 48px; padding: 12px 16px; border-radius: 12px; border: 0; cursor: pointer; background: #ffffff26; color: #fff; touch-action: manipulation; transition: transform .1s, background .15s }
+button:hover:not(:disabled) { background: #ffffff3d } button:active:not(:disabled) { transform: scale(.97) }
+button:disabled { cursor: default } button:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px }
+button.big { background: var(--gold); color: var(--ink); font-weight: 700; padding: 14px 28px }
+button.big:hover:not(:disabled) { background: #ffe34d }
+button.ghost { background: none; text-decoration: underline; min-height: 44px }
+.opts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px }
+.opts .ok { background: #2dc653; color: #000 } .opts .ko { background: #e5383b }
+img { width: min(300px, 100%); aspect-ratio: 1; object-fit: cover; border-radius: 16px; transition: filter .5s }
+.disc { font-size: 3rem; width: clamp(88px, 28vw, 110px); aspect-ratio: 1; display: grid; place-items: center; border-radius: 50%; background: conic-gradient(var(--gold), #ff006e, #7b2cbf, var(--gold)) }
+.spin { animation: s 2s linear infinite } @keyframes s { to { transform: rotate(360deg) } }
+@media (max-width: 420px) { .opts { grid-template-columns: 1fr } }
+/* tablet/escritorio/móvil horizontal: imagen o disco a la izquierda, opciones a la derecha */
+@media (min-width: 760px), (orientation: landscape) and (min-width: 600px) {
+  .card.q { width: min(880px, 100%); grid-template-columns: 1fr 1fr; align-items: center }
+  .card.q > header, .card.q > p, .card.q > button { grid-column: 1 / -1 }
+  .card.q > .opts { grid-template-columns: 1fr }
+  .card.q > button.big { justify-self: center }
+}
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important } }
